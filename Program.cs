@@ -5,3 +5,62 @@
 // [“1234”, “1567”, “-2”, “computer science”] → [“-2”]
 // [“Russia”, “Denmark”, “Kazan”] → []
 
+string[] StringArrayUserInput(int size)
+{
+  string[] array = new string[size];
+
+  for (int i = 0; i < size; i++)
+  {
+    Console.Write($"Введите {i}-й элемент массива: ");
+    array[i] = Console.ReadLine();
+  }
+  return array;
+}
+
+void displayArray(string[] arrayToDisplay)
+{
+  Console.Write("[ ");
+  for (int i = 0; i < arrayToDisplay.Length - 1; i++)
+  {
+    Console.Write("\"" + arrayToDisplay[i] +"\"" + " , ");
+  }
+  Console.Write("\"" + arrayToDisplay[arrayToDisplay.Length - 1] + "\"" + " ]");
+  Console.WriteLine();
+}
+
+string[] chooseElements(string[] newArray)
+{
+  int size = newArray.Length;
+  int newSize = 0;
+  int n = 0;
+  string[] newStringArray = new string[newSize];
+
+  for (int i = 0; i < size; i++)
+  {
+    if (newArray[i].Length <= 3)
+    {
+      newSize++;
+      Array.Resize(ref newStringArray, newSize);
+      newStringArray[n] = newArray[i];
+      n++;
+    }
+  }
+  return newStringArray;
+}
+
+Console.Write("Введите колличество элементов массива(натуральное число): ");
+int size = Convert.ToInt32(Console.ReadLine());
+if (size > 0)
+{
+  string[] stringArray = StringArrayUserInput(size);
+
+  Console.Write("Первоначальный массив: ");
+  displayArray(stringArray);
+
+  string[] newStringArray = chooseElements(stringArray);
+
+  Console.Write("Массив строк, длина которых меньше, либо равна 3 символам: ");
+  displayArray(newStringArray);
+}
+else
+  Console.WriteLine("Введенное число не является натуральным.");
