@@ -28,39 +28,39 @@ void displayArray(string[] arrayToDisplay)
   Console.WriteLine();
 }
 
-string[] chooseElements(string[] newArray)
+string[] chooseElements(string[] array) 
 {
-  int size = newArray.Length;
+  int size = array.Length;
   int newSize = 0;
   int n = 0;
-  string[] newStringArray = new string[newSize];
+  string[] newArray = new string[newSize];
 
   for (int i = 0; i < size; i++)
   {
-    if (newArray[i].Length <= 3)
+    if (array[i].Length <= 3)
     {
       newSize++;
-      Array.Resize(ref newStringArray, newSize);
-      newStringArray[n] = newArray[i];
+      Array.Resize(ref newArray, newSize);
+      newArray[n] = array[i];
       n++;
     }
   }
-  return newStringArray;
+  return newArray;
 }
 
 Console.Write("Введите колличество элементов массива(натуральное число): ");
 int size = Convert.ToInt32(Console.ReadLine());
 if (size > 0)
 {
-  string[] stringArray = StringArrayUserInput(size);
+  string[]array = StringArrayUserInput(size);
 
   Console.Write("Первоначальный массив: ");
-  displayArray(stringArray);
+  displayArray(array);
 
-  string[] newStringArray = chooseElements(stringArray);
+  string[]newArray = chooseElements(array); 
 
   Console.Write("Массив строк, длина которых меньше, либо равна 3 символам: ");
-  displayArray(newStringArray);
+  displayArray(newArray);
 }
 else
   Console.WriteLine("Введенное число не является натуральным.");
